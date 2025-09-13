@@ -10,7 +10,8 @@
 @media (max-width: 600px) {
   body {
     font-size: 14px;
-    background-color: red;
+    background-image: url("/images/site/checkerboard.jpg");
+    overflow-x: hidden;
   }
   header, nav, main, footer {
     margin: 5px;
@@ -27,57 +28,349 @@
     width: 100%;
     height: auto;
   }
-  
+  #wrapper {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    border-radius: 0;
+    padding: 0 0 12px 0;
+    background: #fff;
+  }
+  #top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 8px 0 8px;
+  }
+  nav {
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+  }
+  #main-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+  #main-nav li {
+    margin: 0 0 8px 0;
+  }
+  #main-nav a {
+    padding: 14px 0;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+  }
+  main {
+    padding: 8px;
+  }
+  .dmc-sale {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dmc-sale img {
+    margin-left: 0;
+    margin-top: 16px;
+    width: 100%;
+  }
+  .dmc-text {
+    position: static;
+    max-width: 100%;
+    padding: 12px 0 12px 0;
+  }
+  .dmc-upgrades-reviews {
+    flex-direction: column;
+    gap: 0;
+  }
+  .dmc-upgrades ul {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .dmc-upgrades li {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .dmc-upgrades a {
+    display: block;
+    margin-top: 4px;
+  }
+  footer {
+    padding: 12px 8px 0 8px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
 }
 /********** Desktop View **********/
 @media (min-width: 601px) {
   body {
     font-size: 16px;
-    background-color: lightgray;
+    background-image: url("/images/site/checkerboard.jpg");
   }
-  header, nav, main, footer {
-    margin: 10px auto;
-    padding: 20px;
-    max-width: 1200px;
+  /* Checkerboard background for body */
+body {
+  background-image: url("/images/site/checkerboard.jpg");
+  background-size: 80px 80px;
+  background-repeat: repeat;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+}
+
+/* Main wrapper with white background and blue border */
+#wrapper {
+  background: #fff;
+  border: 3px solid #00bfff;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 24px auto;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  padding: 0 0 24px 0;
+}
+
+/* Header */
+#top-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 32px 32px 0 32px;
+  background: none;
+}
+
+.siteName h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+  color: #222;
+  display: inline;
+}
+
+.siteName a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#tools {
+  margin-top: 8px;
+}
+
+#tools a {
+  color: #444;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+#tools a:hover {
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+/* Navigation bar */
+nav {
+  margin: 24px 0 0 0;
+  background: #22223b;
+  border-radius: 2px;
+  padding: 0 32px;
+}
+
+#main-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#main-nav li {
+  margin-right: 32px;
+}
+
+#main-nav li:last-child {
+  margin-right: 0;
+}
+
+#main-nav a {
+  color: #fff !important; /* Make nav links visible */
+  text-decoration: none;
+  font-size: 1.05rem;
+  padding: 16px 0;
+  display: inline-block;
+}
+
+#main-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main content */
+main {
+  padding: 32px;
+}
+
+main h1 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  font-weight: bold;
+}
+
+/* Upgrades and Reviews side by side */
+.dmc-upgrades-reviews {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.dmc-upgrades, .dmc-reviews {
+  flex: 1;
+}
+
+.dmc-upgrades h2, .dmc-reviews h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.dmc-upgrades ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.dmc-upgrades li {
+  background: #00bfff;
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.dmc-upgrades img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.dmc-upgrades a {
+  color: #222;
+  text-decoration: underline;
+  font-size: 1rem;
+  margin-left: 8px;
+}
+
+.dmc-reviews ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.dmc-reviews li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid #ccc;
+  margin-top: 32px;
+  padding: 16px 32px 0 32px;
+  font-size: 0.95rem;
+  color: #555;
+  background: none;
+  text-align: left;
+  opacity: 1 !important; /* Make sure footer is not faded */
+}
+
+/* --- Mobile View Tweaks --- */
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
   }
-  nav ul {
-    display: flex;
-    justify-content: space-around;
-    list-style-type: none;
+  #wrapper {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    border-radius: 0;
+    padding: 0 0 12px 0;
+    background: #fff;
+  }
+  #top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 8px 0 8px;
+  }
+  nav {
+    width: 100vw;
     padding: 0;
+    margin: 0;
+    border-radius: 0;
   }
-  nav ul li {
-    margin: 0 10px;
-  }
-  #checkerboard {
+  #main-nav {
+    flex-direction: column;
     width: 100%;
-    height: auto;
   }
-  #dmc-text {
-    font-size: 1.2em;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    text-align: justify;
+  #main-nav li {
+    margin: 0 0 8px 0;
   }
-  #dmc-image {
+  #main-nav a {
+    padding: 14px 0;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+  }
+  main {
+    padding: 8px;
+  }
+  .dmc-sale {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dmc-sale img {
+    margin-left: 0;
+    margin-top: 16px;
+    width: 100%;
+  }
+  .dmc-text {
+    position: static;
     max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    padding: 12px 0 12px 0;
   }
-  #dmc-upgrades {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    list-style-type: disc;
-    padding-left: 20px;
+  .dmc-upgrades-reviews {
+    flex-direction: column;
+    gap: 0;
   }
+  .dmc-upgrades ul {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .dmc-upgrades li {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .dmc-upgrades a {
+    display: block;
+    margin-top: 4px;
+  }
+  footer {
+    padding: 12px 8px 0 8px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
 }
