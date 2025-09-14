@@ -348,6 +348,7 @@ footer {
     position: static;
     max-width: 100%;
     padding: 12px 0 12px 0;
+    box-shadow: none;
   }
   .dmc-upgrades-reviews {
     flex-direction: column;
@@ -371,6 +372,84 @@ footer {
     padding: 12px 8px 0 8px;
     font-size: 0.9rem;
     text-align: center;
+  }
+}
+
+/* --- DMC Sale Section --- */
+.dmc-sale {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  position: relative;
+  min-height: 260px;
+}
+
+.dmc-text {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  background: rgba(255,255,255,0.85);
+  padding: 24px 24px 24px 0;
+  max-width: 320px;
+  z-index: 2;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.04);
+}
+
+.dmc-text h2 {
+  color: #00bfff;
+  font-size: 1.4rem;
+  margin: 0 0 8px 0;
+  font-weight: bold;
+}
+
+.dmc-text ul {
+  margin: 0 0 16px 0;
+  padding-left: 18px;
+  color: #00bfff;
+  font-size: 1.1rem;
+  list-style: none;
+}
+
+.dmc-text .cta-btn {
+  background: #00bfff;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 12px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.dmc-sale img {
+  width: 420px;
+  max-width: 100%;
+  margin-left: 180px;
+  display: block;
+  z-index: 1;
+}
+
+/* --- Mobile View --- */
+@media (max-width: 600px) {
+  .dmc-sale {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: unset;
+  }
+  .dmc-sale img {
+    margin-left: 0;
+    margin-top: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+  .dmc-text {
+    position: static;
+    max-width: 100%;
+    padding: 12px 0 12px 0;
+    box-shadow: none;
   }
 }
 }
