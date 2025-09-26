@@ -177,26 +177,21 @@ nav {
   background: #22223b;
   border-radius: 2px;
   padding: 0 32px;
-}
-
-#main-nav {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
-#main-nav li {
+nav li {
   margin-right: 32px;
 }
 
-#main-nav li:last-child {
+nav li:last-child {
   margin-right: 0;
 }
 
-#main-nav a {
+nav a {
   color: #fff !important; /* Make nav links visible */
   text-decoration: none;
   font-size: 1.05rem;
@@ -204,7 +199,7 @@ nav {
   display: inline-block;
 }
 
-#main-nav a:hover {
+nav a:hover {
   text-decoration: underline;
 }
 
@@ -316,15 +311,17 @@ footer {
     padding: 0;
     margin: 0;
     border-radius: 0;
+    flex-direction: column;
+
   }
-  #main-nav {
+  nav {
     flex-direction: column;
     width: 100%;
   }
-  #main-nav li {
+  #main nav li {
     margin: 0 0 8px 0;
   }
-  #main-nav a {
+  #main nav a {
     padding: 14px 0;
     font-size: 1.1rem;
     text-align: center;

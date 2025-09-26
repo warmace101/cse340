@@ -12,6 +12,7 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const invRoute = require("./routes/inventoryRoute")
+const Util = require("./utilities")
 
 
 /* ***********************
@@ -29,10 +30,6 @@ app.use(express.static("public"))
  *************************/
 app.use(static)
 
-//File not found route - must be last in route list
-app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appeat to have not made that page'})
-})
 
 // Index Route
 app.get("/", baseController.buildHome)
@@ -40,12 +37,17 @@ app.get("/", baseController.buildHome)
 // Inventory Route
 app.use("/inv", invRoute)
 
+//File not found route - must be last in route list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have not made that page'})
+})
+
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
+  let nav = await Util.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   res.render("errors/error", {
     title: err.status || 'Server Error', 
