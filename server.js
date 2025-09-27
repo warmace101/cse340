@@ -37,24 +37,23 @@ app.get("/", baseController.buildHome)
 // Inventory Route
 app.use("/inv", invRoute)
 
-//File not found route - must be last in route list
-app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have not made that page'})
-})
+// 404 handler (for unmatched routes)
+app.use((req, res, next) => {
+  const err = new Error("Not Found");
+  err.status = 404;
+  next(err);
+});
 
-/* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
-app.use(async (err, req, res, next) => {
-  let nav = await Util.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  res.render("errors/error", {
-    title: err.status || 'Server Error', 
+// General error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500);
+  res.render("error", {
+    title: "Error",
     message: err.message,
-    nav
-  })
-})
+    error: err
+  });
+});
 
 
 /* ***********************
