@@ -44,14 +44,20 @@ app.use((req, res, next) => {
   next(err);
 });
 
-// General error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
+// General error handler (place after all routes)
+app.use(async (err, req, res, next) => {
+  let nav;
+  try {
+    nav = await utilities.getNav();
+  } catch (e) {
+    nav = ""; // fallback if nav fails
+  }
   res.status(err.status || 500);
   res.render("error", {
     title: "Error",
     message: err.message,
-    error: err
+    error: err,
+    nav
   });
 });
 

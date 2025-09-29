@@ -33,7 +33,7 @@ async function getInventoryByClassificationId(classification_id) {
 async function getVehicleByInvId(inv_id) {
   try {
     const data = await pool.query(
-      `SELECT * FROM public.inventory WHERE inv_id = $1`,
+      `SELECT * FROM public.inventory WHERE inv_id = 1`,
       [inv_id]
     )
     return data.rows[0]
@@ -51,6 +51,7 @@ async function getInventoryByInvId(inv_id) {
       "SELECT * FROM public.inventory WHERE inv_id = $1",
       [inv_id]
     );
+    console.log(data.rows[0]);
     return data.rows[0];
   } catch (error) {
     throw error;

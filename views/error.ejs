@@ -1,0 +1,16 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<p><%= message %></p>
+
+<% if (error) { %>
+  <div class="error-details">
+    <h2>Error Details:</h2>
+    <pre><%= error %></pre>
+  </div>
+<% } %>
+
+<nav>
+  <%- nav %>
+</nav>
