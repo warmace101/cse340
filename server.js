@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 
 // General error handler (place after all routes)
 app.use(async (err, req, res, next) => {
-  let nav;
+  let nav="";
   try {
     nav = await utilities.getNav();
   } catch (e) {
