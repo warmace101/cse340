@@ -12,11 +12,12 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const invRoute = require("./routes/inventoryRoute")
-const Util = require("./utilities")
+const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require("./database/")
-
-
+const accountRoute = require("./routes/accountRoute")
+const accountController = require("./controllers/accountController")
+const bodyParser = require("body-parser")
 
 /* ***********************
  * Middleware
@@ -39,6 +40,9 @@ app.use(function(req, res, next){
   next()
 })
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 /* ***********************
  * View Enigine and Templates
  *************************/
@@ -60,6 +64,10 @@ app.get("/", baseController.buildHome)
 
 // Inventory Route
 app.use("/inv", invRoute)
+// Account Route
+app.use("/account", require("./routes/accountRoute"))
+
+
 
 // 404 handler (for unmatched routes)
 app.use((req, res, next) => {

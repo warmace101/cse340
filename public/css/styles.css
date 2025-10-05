@@ -498,4 +498,264 @@ footer {
   .vehicle-image img {
     max-width: 100%;
   }
+}
+
+/* --- Login Page Styles --- */
+body.account-login {
+  background: #bfe3f7;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-container {
+  max-width: 350px;
+  margin: 48px auto;
+  background: #23233b;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 32px 24px 24px 24px;
+  color: #fff;
+  text-align: center;
+}
+
+.login-container h1 {
+  color: #fff;
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.login-form label {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.login-form input {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.login-form button {
+  background: #fff;
+  color: #23233b;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+  width: 80%;
+  align-self: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.flash-message {
+  background: #ffefc2;
+  color: #23233b;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.signup-link {
+  margin-top: 18px;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.signup-link a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+.signup-link a:hover {
+  color: #00bfff;
+}
+
+/* --- Registration Page Styles --- */
+
+/* Desktop View */
+@media (min-width: 601px) {
+  body.account-login {
+    background: #bfe3f7;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .register-container {
+    max-width: 350px;
+    margin: 48px auto;
+    background: #fff;
+    border: 2px solid #23233b;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 32px 24px 24px 24px;
+    color: #23233b;
+    text-align: left;
+  }
+
+  .register-container h1 {
+    color: #23233b;
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+    text-align: left;
+  }
+
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .register-form label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #23233b;
+  }
+
+  .register-form input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .register-form button {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 80%;
+    align-self: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    transition: 0.2s;
+  }
+
+  .register-form button:hover {
+    background: #1565c0;
+  }
+
+  .flash-message {
+    background: #ffefc2;
+    color: #23233b;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .password-hint {
+    font-size: 0.95rem;
+    color: #555;
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 600px) {
+  body.account-login {
+    background: #bfe3f7;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .register-container {
+    max-width: 98vw;
+    margin: 24px auto;
+    background: #fff;
+    border: 2px solid #23233b;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 18px 8px 18px 8px;
+    color: #23233b;
+    text-align: left;
+  }
+
+  .register-container h1 {
+    color: #23233b;
+    margin-bottom: 18px;
+    font-size: 1.2rem;
+    text-align: left;
+  }
+
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .register-form label {
+    font-weight: bold;
+    margin-bottom: 2px;
+    color: #23233b;
+    font-size: 1rem;
+  }
+
+  .register-form input {
+    padding: 7px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .register-form button {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 6px;
+    width: 90%;
+    align-self: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    transition: 0.2s;
+  }
+
+  .register-form button:hover {
+    background: #1565c0;
+  }
+
+  .flash-message {
+    background: #ffefc2;
+    color: #23233b;
+    border-radius: 6px;
+    padding: 6px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  .password-hint {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
 }}
