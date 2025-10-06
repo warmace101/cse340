@@ -32,13 +32,16 @@ accountController.buildRegister = async function(req, res, next) {
 accountController.registerAccount = async function(req, res) {
   let nav = await utilities.getNav();
   const { account_firstname, account_lastname, account_email, account_password } = req.body;
-
+ 
   const regResult = await accountModel.registerAccount(
     account_firstname,
     account_lastname,
     account_email,
     account_password
   );
+
+
+  console.log("Registration Result:", regResult); // Debugging line
 
   if (regResult && regResult.rowCount > 0) {
     req.flash(
