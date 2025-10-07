@@ -11,7 +11,7 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
-const invRoute = require("./routes/inventoryRoute")
+const inventoryRoute = require("./routes/inventoryRoute");
 const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require("./database/")
@@ -63,7 +63,7 @@ app.use(static)
 app.get("/", baseController.buildHome)
 
 // Inventory Route
-app.use("/inv", invRoute)
+app.use("/inv", inventoryRoute);
 // Account Route
 app.use("/account", accountRoute)
 

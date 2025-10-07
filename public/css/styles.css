@@ -758,4 +758,132 @@ body.account-login {
     margin-top: 6px;
     margin-bottom: 0;
   }
-}}
+}
+
+/* Add Inventory Form Styles */
+.add-inventory-form {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem 2rem;
+}
+
+.add-inventory-form label {
+  grid-column: 1 / 2;
+  align-self: center;
+  font-weight: bold;
+}
+
+.add-inventory-form input,
+.add-inventory-form textarea,
+.add-inventory-form select {
+  grid-column: 2 / 3;
+  padding: 0.5rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-inventory-form textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.add-inventory-form button[type="submit"] {
+  grid-column: 1 / 3;
+  padding: 0.75rem;
+  background: #223;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition:  0.2s;
+}
+
+.add-inventory-form button[type="submit"]:hover {
+  background: #445;
+}
+
+@media (max-width: 700px) {
+  .add-inventory-form {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+  .add-inventory-form label,
+  .add-inventory-form input,
+  .add-inventory-form textarea,
+  .add-inventory-form select,
+  .add-inventory-form button[type="submit"] {
+    grid-column: 1 / 2;
+  }
+}
+
+/* Add Classification Form Styles */
+.add-classification-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.add-classification-form label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.add-classification-form input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-classification-form .form-hint {
+  font-size: 0.97rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.add-classification-form button[type="submit"] {
+  padding: 0.75rem;
+  background: #223;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+
+.add-classification-form button[type="submit"]:hover {
+  background: #445;
+}
+
+@media (max-width: 600px) {
+  .add-classification-form {
+    max-width: 98vw;
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+}
+}
