@@ -7,15 +7,20 @@ const regValidate = require("../utilities/account-validation");
 // Login route
 router.get("/login", accountController.buildLogin);
 
-// Registration route
-router.get("/register", accountController.buildRegister);
-
-// Registration POST route with validation
+// Process the login request
 router.post(
-  "/register",
-  regValidate.registationRules(),
-  regValidate.checkRegData,
-  utilities.handleErrors(accountController.registerAccount)
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
+
+// Protect the account management view
+router.get(
+  "/",
+  utilities.checkJWTToken, // <-- checks for a valid JWT and sets res.locals.loggedin
+  utilities.checkLogin,     // <-- only allows access if logged in
+  utilities.handleErrors(accountController.buildAccountManagement)
 );
 
 module.exports = router;

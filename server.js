@@ -18,6 +18,7 @@ const pool = require("./database/")
 const accountRoute = require("./routes/accountRoute")
 const accountController = require("./controllers/accountController")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
@@ -32,7 +33,7 @@ const bodyParser = require("body-parser")
   saveUninitialized: true,
   name: 'sessionId',
 }))
-
+app.use(cookieParser())
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
