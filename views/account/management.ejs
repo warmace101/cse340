@@ -12,5 +12,11 @@
     </ul>
   <% } %>
   <p>You're logged in.</p>
+  <h2>Manage Inventory</h2>
+  <p>Choose a classification to see those vehicles:</p>
+  <%- classificationSelect %>
+  <table id="inventoryDisplay"></table>
+  <noscript>JavaScript must be enabled to use this page.</noscript>
+  <script src="../../js/inventory.js"></script>
 </main>
 <%- include("../partials/footer") %>

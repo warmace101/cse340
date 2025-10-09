@@ -26,7 +26,7 @@ accountController.buildRegister = async function(req, res, next) {
     title: "Registration",
     nav,
     errors: null,
-    flash: "", // <-- Add this line
+    flash: "",
     account_firstname: "",
     account_lastname: "",
     account_email: ""

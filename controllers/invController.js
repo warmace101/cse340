@@ -43,12 +43,18 @@ invController.buildByInvId = async function (req, res, next) {
 }};
 
 // Deliver the management view
-invController.buildManagement = async function(req, res, next) {
+invController.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav();
-  res.render("inventory/management", {
+
+  // Build the classification select list
+  const classificationSelect = await utilities.buildClassificationList();
+
+  res.render("./inventory/management", {
     title: "Inventory Management",
     nav,
-    flash: req.flash("notice")
+    flash: req.flash("notice"),
+    classificationSelect, // pass to view
+    errors: null
   });
 };
 
@@ -151,6 +157,19 @@ invController.addInventory = async function(req, res) {
       inv_miles,
       inv_color
     });
+  }
+};
+
+/* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invController.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id);
+  const invData = await invModel.getInventoryByClassificationId(classification_id);
+  if (invData && invData.length && invData[0].inv_id) {
+    return res.json(invData);
+  } else {
+    next(new Error("No data returned"));
   }
 };
 
