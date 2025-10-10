@@ -110,4 +110,93 @@ validate.checkLoginData = async (req, res, next) => {
   next();
 };
 
+/* **********************************
+ *  Update Account Data Validation Rules
+ * ********************************* */
+validate.updateAccountRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .notEmpty()
+      .withMessage("First name is required."),
+    body("account_lastname")
+      .trim()
+      .notEmpty()
+      .withMessage("Last name is required."),
+    body("account_email")
+      .trim()
+      .isEmail()
+      .withMessage("A valid email is required.")
+      .normalizeEmail()
+  ];
+};
+
+/* ******************************
+ * Check update data and return errors or continue
+ * ***************************** */
+validate.checkUpdateAccountData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email, account_id } = req.body;
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await require("../utilities").getNav();
+    res.render("account/update", {
+      title: "Update Account",
+      nav,
+      errors,
+      flash: "",
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email
+    });
+    return;
+  }
+  next();
+};
+
+/* **********************************
+ *  Password Update Validation Rules
+ * ********************************* */
+validate.passwordRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+    body("account_id")
+      .notEmpty()
+      .withMessage("Account ID is required.")
+  ];
+};
+
+/* ******************************
+ * Check password data and return errors or continue
+ * ***************************** */
+validate.checkPasswordData = async (req, res, next) => {
+  const { account_id } = req.body;
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await require("../utilities").getNav();
+    res.render("account/update", {
+      title: "Update Account",
+      nav,
+      errors,
+      flash: "",
+      account_id,
+      account_firstname: req.body.account_firstname,
+      account_lastname: req.body.account_lastname,
+      account_email: req.body.account_email
+    });
+    return;
+  }
+  next();
+};
+
 module.exports = validate

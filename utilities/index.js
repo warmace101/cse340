@@ -139,6 +139,22 @@ utilities.checkLogin = (req, res, next) => {
   }
 };
 
+/* ****************************************
+ *  Check Account Type
+ * ************************************ */
+utilities.checkAccountType = (req, res, next) => {
+  if (
+    res.locals.loggedin &&
+    (res.locals.accountData.account_type === "Employee" ||
+      res.locals.accountData.account_type === "Admin")
+  ) {
+    next();
+  } else {
+    req.flash("notice", "You must be an employee or admin to access this area.");
+    return res.redirect("/account/login");
+  }
+};
+
 /* Error handling wrapper for async route handlers */
 utilities.handleErrors = function(fn) {
   return function(req, res, next) {

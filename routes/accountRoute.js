@@ -34,4 +34,35 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 );
 
+// Update account info view
+router.get(
+  "/update/:account_id",
+  utilities.checkJWTToken,
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildUpdateAccount)
+);
+
+// Process account info update
+router.post(
+  "/update",
+  regValidate.updateAccountRules(),
+  regValidate.checkUpdateAccountData,
+  utilities.handleErrors(accountController.updateAccount)
+);
+
+// Process password update
+router.post(
+  "/update-password",
+  regValidate.passwordRules(),
+  regValidate.checkPasswordData,
+  utilities.handleErrors(accountController.updatePassword)
+);
+
+// Logout route
+router.get("/logout", (req, res) => {
+  res.clearCookie("jwt");
+  req.flash("notice", "You have been logged out.");
+  res.redirect("/");
+});
+
 module.exports = router;

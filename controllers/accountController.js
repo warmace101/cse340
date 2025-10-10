@@ -144,5 +144,28 @@ accountController.buildAccountManagement = async function(req, res, next) {
   });
 };
 
+accountController.buildUpdateAccount = async function(req, res, next) {
+  let nav = await utilities.getNav();
+  const account = await accountModel.getAccountById(req.params.account_id);
+  res.render("account/update", {
+    title: "Update Account",
+    nav,
+    flash: req.flash("notice"),
+    errors: null,
+    account_id: account.account_id,
+    account_firstname: account.account_firstname,
+    account_lastname: account.account_lastname,
+    account_email: account.account_email
+  });
+};
+
+accountController.updateAccount = async function(req, res, next) {
+  // Validate and update account info, then redirect or render with errors
+};
+
+accountController.updatePassword = async function(req, res, next) {
+  // Validate, hash, and update password, then redirect or render with errors
+};
+
 
 module.exports = accountController;

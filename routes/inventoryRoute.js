@@ -12,7 +12,7 @@ router.get("/type/:classification_id", invController.buildByClassification);
 router.get("/detail/:inv_id", invController.buildByInvId);
 
 // Management view route
-router.get("/", utilities.handleErrors(invController.buildManagement));
+router.get("/management", utilities.handleErrors(invController.buildManagement));
 
 // GET add-classification view
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
@@ -26,7 +26,12 @@ router.post(
 );
 
 // GET add-inventory view
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
+router.get(
+  "/add-inventory",
+  utilities.checkJWTToken,
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.buildAddInventory)
+);
 
 // POST add-inventory
 router.post(
@@ -41,5 +46,10 @@ router.get(
   "/getInventory/:classification_id",
   utilities.handleErrors(invController.getInventoryJSON)
 );
+
+// Redirect to management
+router.get("/redirect-management", (req, res) => {
+  return res.redirect("/inv/management");
+});
 
 module.exports = router;

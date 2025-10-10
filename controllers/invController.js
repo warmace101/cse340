@@ -8,9 +8,20 @@ const invController = {}
 invController.buildByClassification = async function (req, res, next) {
   const classification_id = req.params.classification_id
   const data = await invModel.getInventoryByClassificationId(classification_id)
+
+  let className = "Unknown";
+  if (data && data.length > 0 && data[0].classification_name) {
+    className = data[0].classification_name;
+  }
+
+  if (data.length > 0) {
+    className = data[0].classification_name
+  } else {
+    req.flash("notice", "No data found for the selected classification.")
+    return res.redirect("/inventory/management")
+  }
   const grid = await utilities.buildClassificationGrid(data)
   let nav = await utilities.getNav()
-  const className = data[0].classification_name
   res.render("./inventory/classification", {
     title: className + " vehicles",
     nav,
@@ -45,15 +56,12 @@ invController.buildByInvId = async function (req, res, next) {
 // Deliver the management view
 invController.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav();
-
-  // Build the classification select list
   const classificationSelect = await utilities.buildClassificationList();
-
   res.render("./inventory/management", {
     title: "Inventory Management",
     nav,
     flash: req.flash("notice"),
-    classificationSelect, // pass to view
+    classificationSelect,
     errors: null
   });
 };
