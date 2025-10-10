@@ -64,7 +64,7 @@ app.use(static)
 app.get("/", baseController.buildHome)
 
 // Inventory Route
-app.use("/inventory", inventoryRoute);
+app.use("/inv", inventoryRoute);
 // Account Route
 app.use("/account", accountRoute)
 

@@ -18,7 +18,7 @@ invController.buildByClassification = async function (req, res, next) {
     className = data[0].classification_name
   } else {
     req.flash("notice", "No data found for the selected classification.")
-    return res.redirect("/inventory/management")
+    return res.redirect("/inv/management")
   }
   const grid = await utilities.buildClassificationGrid(data)
   let nav = await utilities.getNav()
@@ -68,7 +68,7 @@ invController.buildManagement = async function (req, res, next) {
 
 invController.buildAddClassification = async function(req, res, next) {
   let nav = await utilities.getNav();
-  res.render("inventory/add-classification", {
+  res.render("inv/add-classification", {
     title: "Add New Classification",
     nav,
     flash: "",
@@ -85,14 +85,14 @@ invController.addClassification = async function(req, res) {
   if (result && result.rowCount > 0) {
     req.flash("notice", `Classification "${classification_name}" added successfully.`);
     nav = await utilities.getNav(); // update nav with new classification
-    res.render("inventory/management", {
+    res.render("inv/management", {
       title: "Inventory Management",
       nav,
       flash: req.flash("notice")
     });
   } else {
     req.flash("notice", "Sorry, the classification could not be added.");
-    res.render("inventory/add-classification", {
+    res.render("inv/add-classification", {
       title: "Add New Classification",
       nav,
       flash: req.flash("notice"),
@@ -106,7 +106,7 @@ invController.addClassification = async function(req, res) {
 invController.buildAddInventory = async function(req, res, next) {
   let nav = await utilities.getNav();
   let classificationList = await utilities.buildClassificationList();
-  res.render("inventory/add-inventory", {
+  res.render("inv/add-inventory", {
     title: "Add New Inventory Item",
     nav,
     flash: "",
@@ -140,7 +140,7 @@ invController.addInventory = async function(req, res) {
   if (result && result.rowCount > 0) {
     req.flash("notice", `Inventory item "${inv_make} ${inv_model}" added successfully.`);
     nav = await utilities.getNav(); // update nav
-    res.render("inventory/management", {
+    res.render("inv/management", {
       title: "Inventory Management",
       nav,
       flash: req.flash("notice")
@@ -148,7 +148,7 @@ invController.addInventory = async function(req, res) {
   } else {
     req.flash("notice", "Sorry, the inventory item could not be added.");
     let classificationList = await utilities.buildClassificationList(classification_id);
-    res.render("inventory/add-inventory", {
+    res.render("inv/add-inventory", {
       title: "Add New Inventory Item",
       nav,
       flash: req.flash("notice"),
