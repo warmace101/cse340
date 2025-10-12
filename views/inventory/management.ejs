@@ -14,5 +14,9 @@
       <a href="/inv/add-inventory">Add New Inventory Item</a>
     </li>
   </ul>
+
+  <form action="/inv/export-csv/<%= classification_id || 1 %>" method="get" style="display:inline;">
+    <button type="submit">Export Inventory as CSV</button>
+  </form>
 </main>
 <%- include("../partials/footer") %>

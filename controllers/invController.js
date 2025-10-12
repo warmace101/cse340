@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const { Parser } = require("json2csv"); 
 const invController = {}
 
 /* ***************************
@@ -57,11 +58,15 @@ invController.buildByInvId = async function (req, res, next) {
 invController.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav();
   const classificationSelect = await utilities.buildClassificationList();
+  // Set a default or selected classification_id
+  const classification_id = 1; // or get from query/session if needed
+
   res.render("./inventory/management", {
     title: "Inventory Management",
     nav,
     flash: req.flash("notice"),
     classificationSelect,
+    classification_id, // <-- add this line
     errors: null
   });
 };
@@ -178,6 +183,42 @@ invController.getInventoryJSON = async (req, res, next) => {
     return res.json(invData);
   } else {
     next(new Error("No data returned"));
+  }
+};
+
+/* ***************************
+ *  Export Inventory by Classification as CSV
+ * ************************** */
+invController.exportInventoryCSV = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id);
+  const invData = await invModel.getInventoryByClassificationId(classification_id);
+
+  if (!invData || invData.length === 0) {
+    req.flash("notice", "No inventory data to export.");
+    return res.redirect("/inv/management");
+  }
+
+  // Define fields for CSV
+  const fields = [
+    { label: "ID", value: "inv_id" },
+    { label: "Make", value: "inv_make" },
+    { label: "Model", value: "inv_model" },
+    { label: "Year", value: "inv_year" },
+    { label: "Description", value: "inv_description" },
+    { label: "Price", value: "inv_price" },
+    { label: "Miles", value: "inv_miles" },
+    { label: "Color", value: "inv_color" }
+  ];
+
+  try {
+    const parser = new Parser({ fields });
+    const csv = parser.parse(invData);
+
+    res.header("Content-Type", "text/csv");
+    res.attachment("inventory.csv");
+    return res.send(csv);
+  } catch (err) {
+    next(err);
   }
 };
 

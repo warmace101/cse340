@@ -47,6 +47,12 @@ router.get(
   utilities.handleErrors(invController.getInventoryJSON)
 );
 
+// Export inventory as CSV
+router.get(
+  "/export-csv/:classification_id",
+  utilities.handleErrors(invController.exportInventoryCSV)
+);
+
 // Redirect to management
 router.get("/redirect-management", (req, res) => {
   return res.redirect("/inv/management");
