@@ -23,6 +23,7 @@ utilities.getNav = async function (req, res, next) {
       "</a>"
     list += "</li>"
   })
+  list += `<li><a href="/messages" title="View the message board">Messages</a></li>`;
   list += "</ul>"
   return list
 }
@@ -135,6 +136,7 @@ utilities.checkLogin = (req, res, next) => {
     next();
   } else {
     req.flash("notice", "Please log in.");
+    req.session.redirectTo = req.originalUrl; // <-- store intended URL
     return res.redirect("/account/login");
   }
 };

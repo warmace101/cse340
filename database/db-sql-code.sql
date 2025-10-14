@@ -51,6 +51,17 @@ CREATE TABLE IF NOT EXISTS public.account
     CONSTRAINT account_pkey PRIMARY KEY (account_id)
 );
 
+-- Create table for messages
+CREATE TABLE messages (
+  message_id SERIAL PRIMARY KEY,
+  account_id INTEGER REFERENCES account(account_id),
+  message_text TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
 -- Data for table `classification`
 INSERT INTO public.classification (classification_name)
 VALUES ('Custom'),

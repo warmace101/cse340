@@ -19,6 +19,7 @@ const accountRoute = require("./routes/accountRoute")
 const accountController = require("./controllers/accountController")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const messageRoute = require("./routes/messageRoute")
 
 /* ***********************
  * Middleware
@@ -33,25 +34,20 @@ const cookieParser = require("cookie-parser")
   saveUninitialized: true,
   name: 'sessionId',
 }))
-app.use(cookieParser())
-// Express Messages Middleware
-app.use(require('connect-flash')())
+app.use(cookieParser());
+app.use(require('connect-flash')());
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
-})
-
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(utilities.checkJWTToken);
 
-/* ***********************
- * View Enigine and Templates
- *************************/
+// View engine, static, etc...
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "layouts/layout") // not at views root
-
-// Server the static files from the public folder
+app.set("layout", "layouts/layout")
 app.use(express.static("public"))
 
 /* ***********************
@@ -67,8 +63,8 @@ app.get("/", baseController.buildHome)
 app.use("/inv", inventoryRoute);
 // Account Route
 app.use("/account", accountRoute)
-
-
+// Message Route
+app.use("/messages", messageRoute)
 
 // 404 handler (for unmatched routes)
 app.use((req, res, next) => {

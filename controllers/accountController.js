@@ -116,7 +116,9 @@ accountController.accountLogin = async function(req, res, next) {
       } else {
         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
       }
-      return res.redirect("/account/")
+      const redirectTo = req.session.redirectTo || "/account/";
+      delete req.session.redirectTo;
+      return res.redirect(redirectTo);
     }
     else {
       req.flash("notice", "Please check your credentials and try again.")

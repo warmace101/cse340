@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+<h1>Message Board</h1>
+<% if (flash && flash.length) { %>
+  <div class="flash"><%= flash %></div>
+<% } %>
+<form action="/messages" method="POST">
+  <textarea name="message_text" rows="3" cols="50" required></textarea><br>
+  <button type="submit">Post Message</button>
+</form>
+<hr>
+<ul>
+  <% messages.forEach(msg => { %>
+    <li>
+      <strong><%= msg.account_firstname %> <%= msg.account_lastname %></strong>
+      (<%= new Date(msg.created_at).toLocaleString() %>):<br>
+      <%= msg.message_text %>
+    </li>
+  <% }) %>
+</ul>
+<%- include('../partials/footer') %>
