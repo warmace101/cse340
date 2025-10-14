@@ -107,7 +107,7 @@ utilities.buildClassificationList = async function(classification_id = null) {
 * Middleware to check token validity
 **************************************** */
 utilities.checkJWTToken = (req, res, next) => {
-  if (req.cookies && req.cookies.jwt) {
+  if (req.cookies.jwt) {
     jwt.verify(
       req.cookies.jwt,
       process.env.ACCESS_TOKEN_SECRET,
